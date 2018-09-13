@@ -14,8 +14,8 @@ class FIM_scan():
     def run(self):
         self.agents = self.read.load_file()
         for agent in self.agents:
+            print "FIM scan run attempt on server: %s" % agent
             self.scan = self.fimscanner.run_fim_scan(agent)
-            print "FIM scan run on server: %s" % agent
 
 def main():
     sys.stdout = lib.Logger(logging.info)
