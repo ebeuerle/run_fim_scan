@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import lib
+import logging
+import sys
 
 class FIM_scan():
     def __init__(self):
-        self.output = []
         config = lib.ConfigHelper()
         self.fimscanner = lib.ServerController(config)
         self.read = lib.FileController()
@@ -14,11 +15,11 @@ class FIM_scan():
         self.agents = self.read.load_file()
         for agent in self.agents:
             self.scan = self.fimscanner.run_fim_scan(agent)
-            self.output.append(self.scan)
-
-#        print(self.output)
+            print "FIM scan run on server: %s" % agent
 
 def main():
+    sys.stdout = lib.Logger(logging.info)
+    sys.stderr = lib.Logger(logging.warning)
     run_fim_scan = FIM_scan()
     run_fim_scan.run()
 
