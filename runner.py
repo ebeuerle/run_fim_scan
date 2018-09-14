@@ -9,7 +9,7 @@ class FIM_scan():
         config = lib.ConfigHelper()
         self.fimscanner = lib.ServerController(config)
         self.read = lib.FileController()
-        self.count = 0
+        sys.tracebacklimit = 0
 
     def run(self):
         self.agents = self.read.load_file()
